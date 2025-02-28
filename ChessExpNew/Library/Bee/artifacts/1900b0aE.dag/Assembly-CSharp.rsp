@@ -357,6 +357,7 @@
 "Assets/Scripts/GameManager.cs"
 "Assets/Scripts/King.cs"
 "Assets/Scripts/Knight.cs"
+"Assets/Scripts/Move.cs"
 "Assets/Scripts/Pawn.cs"
 "Assets/Scripts/Queen.cs"
 "Assets/Scripts/Rook.cs"

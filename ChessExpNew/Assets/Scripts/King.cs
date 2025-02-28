@@ -15,6 +15,7 @@ public class King : MonoBehaviour
         originalPosition = transform.position;
         isWhite = transform.position.z < 4; // Assuming white starts at bottom
         Debug.Log($"King initialized at position: {originalPosition}, isWhite: {isWhite}");
+        GameManager = GameObject.Find("GameManager"); 
     }
 
     void Update()

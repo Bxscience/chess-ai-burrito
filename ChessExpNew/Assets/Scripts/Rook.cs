@@ -8,13 +8,13 @@ public class Rook : MonoBehaviour
     private Vector3 originalPosition;
     private bool isWhite;
     public GameObject GameManager;
-
     void Start()
     {
         targetPosition = transform.position;
         originalPosition = transform.position;
         isWhite = transform.position.z < 4;  // Assuming white starts at bottom
         Debug.Log($"Rook initialized at position: {originalPosition}, isWhite: {isWhite}");
+        GameManager = GameObject.Find("GameManager"); 
     }
 
     void Update()
