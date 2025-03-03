@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -8604797700930108940}
   m_Layer: 0
   m_Name: PawnDark
-  m_TagString: Untagged
+  m_TagString: Piece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -97,7 +97,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e23ac0db2c98df43880eeb325013071, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetPosition: {x: 0, y: 0, z: 0}
+  isSelected: 0
+  moveSpeed: 10
+  originalPosition: {x: 0, y: 0, z: 0}
+  isWhite: 0
   GameManager: {fileID: 0}
+  hasMovedBefore: 0
 --- !u!65 &-8604797700930108940
 BoxCollider:
   m_ObjectHideFlags: 0

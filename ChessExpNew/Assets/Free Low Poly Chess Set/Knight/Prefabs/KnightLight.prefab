@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5706722410009834630}
   m_Layer: 0
   m_Name: KnightLight
-  m_TagString: Untagged
+  m_TagString: Piece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -97,6 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8489080e1fdc5844a62ea8a551ba499, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GameManager: {fileID: 0}
 --- !u!65 &5706722410009834630
 BoxCollider:
   m_ObjectHideFlags: 0
