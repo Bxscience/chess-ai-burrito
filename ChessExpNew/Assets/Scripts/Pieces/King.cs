@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class King : Piece
 {
-    public override List<Move> getAllMoves(GameObject[,] arr) {
+    public override List<Move> getAllMoves(GameObject[,] arr) { // all movements // similar to queen code but lessen loop
         List<Move> moves = new List<Move>();
         for (int a = 1; a < 2; a++) {
             if (transform.position.z + 3.5 + a <= 7) {
@@ -109,10 +109,9 @@ public class King : Piece
             }
             else
                 break;
-        }
-        if (GameManager.GetComponent<GameManager>().p1_check == true && isWhite == true 
-        || GameManager.GetComponent<GameManager>().p2_check == true && isWhite == false) {
-            Debug.Log(moves.Count + " before " + isWhite);
+        } // checks if moves will put king in danger
+        if (GameManager.GetComponent<GameManager>().player1_turn == true && isWhite == true 
+        || GameManager.GetComponent<GameManager>().player2_turn == true && isWhite == false) {
             GameObject[,] arr2 = new GameObject[8,8];
             for (int a = 0; a < moves.Count; a++) {
                 for (int z = 0; z < 8; z++)
@@ -122,12 +121,10 @@ public class King : Piece
                 arr2[moves[a].endz, moves[a].endx] = arr2[moves[a].startz, moves[a].startx];
                 arr2[moves[a].startz, moves[a].startx] = null;
                 if (danger(isWhite, arr2, moves[a].endz, moves[a].endx) == true) {
-                    Debug.Log("hi " + isWhite);
                     moves.RemoveAt(a);
                     a--;
                 }
             }
-            Debug.Log(moves.Count + " after " + isWhite);
         }
         
         return moves;
@@ -137,7 +134,7 @@ public class King : Piece
             for (int x = 0; x < 8; x++) {
                 if (arr[z, x] != null) {
                     if (arr[z, x].GetComponent<Piece>().isWhite != isWhite) {
-                        List<Move> temp = arr[z, x].GetComponent<Piece>().getAllMoves(arr);
+                        List<Move> temp = arr[z, x].GetComponent<Piece>().getAllMoves(arr); // checks all opposing pieces to see if they affect the king
                         for (int a = 0; a < temp.Count; a++)
                             if (temp[a].endz == transform.position.z + 3.5 && temp[a].endx == transform.position.x + 3.5) {
                                 Resources.UnloadUnusedAssets();
@@ -168,7 +165,7 @@ public class King : Piece
         Resources.UnloadUnusedAssets();
         return false;
     }
-    public bool checkmate(bool white) {
+    public bool checkmate(bool white) { // if the king cannot escape, checkmate, else check
         List<Move> temp = getAllMoves(GameManager.GetComponent<GameManager>().game);
         for (int a = 0; a < temp.Count; a++) {
             GameObject[,] arr = new GameObject[8,8];
@@ -188,7 +185,7 @@ public class King : Piece
         Debug.Log("checkmate");
         return true;
     }
-    public bool stalemate(bool white) {
+    public bool stalemate(bool white) { // if the king is not in check but cannot move safely, and there are no available moves, stalemate
         List<Move> temp = getAllMoves(GameManager.GetComponent<GameManager>().game);
         for (int a = 0; a < temp.Count; a++) {
             GameObject[,] arr = new GameObject[8,8];

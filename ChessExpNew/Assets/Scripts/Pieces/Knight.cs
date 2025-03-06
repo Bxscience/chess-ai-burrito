@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Knight : Piece
 {
-    public override List<Move> getAllMoves(GameObject[,] arr) {
+    public override List<Move> getAllMoves(GameObject[,] arr) { // get all L shapes
         List<Move> moves = new List<Move>();
         if (transform.position.z + 3.5f < 7 && transform.position.x + 3.5 > 1)
             if (arr[(int) (transform.position.z + 4.5f), (int) (transform.position.x + 1.5f)] == null)

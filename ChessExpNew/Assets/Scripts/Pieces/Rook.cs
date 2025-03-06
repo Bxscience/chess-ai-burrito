@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Rook : Piece
 {
-    public override List<Move> getAllMoves(GameObject[,] arr) {
+    public override List<Move> getAllMoves(GameObject[,] arr) { // uses a loop to move up and down and side to side
         List<Move> moves = new List<Move>();
         for (int a = 1; a < 8; a++) {
             if (transform.position.z + 3.5 + a <= 7) {

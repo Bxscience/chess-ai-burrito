@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bishop : Piece
 {
-    public override List<Move> getAllMoves(GameObject[,] arr) {
+    public override List<Move> getAllMoves(GameObject[,] arr) { // similar to rook but diagonal
         List<Move> moves = new List<Move>();
         for (int a = 1; a < 8; a++) {
             if (transform.position.z + 3.5 + a <= 7 && transform.position.x + 3.5 + a <= 7) {

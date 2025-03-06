@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Queen : Piece
 {
-    public override List<Move> getAllMoves(GameObject[,] arr) {
+    public override List<Move> getAllMoves(GameObject[,] arr) { // a combination of the rook and bishop 
         List<Move> moves = new List<Move>();
         for (int a = 1; a < 8; a++) {
             if (transform.position.z + 3.5 + a <= 7) {

@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Piece : MonoBehaviour
+public abstract class Piece : MonoBehaviour // Main Piece class
+// handles all behaviors essential for selecting a piece, deselecting, and highlighting the board
 {
     public Vector3 targetPosition;
     public bool isSelected = false;
@@ -34,7 +35,7 @@ public abstract class Piece : MonoBehaviour
             if (GameManager.GetComponent<GameManager>().p1_check == false && GameManager.GetComponent<GameManager>().player1_turn == true || GameManager.GetComponent<GameManager>().player1_turn == true && 
             GameManager.GetComponent<GameManager>().p1_check == true && GetComponent<King>() != null || 
             GameManager.GetComponent<GameManager>().p2_check == false && GameManager.GetComponent<GameManager>().player2_turn == true || GameManager.GetComponent<GameManager>().player2_turn == true && 
-            GameManager.GetComponent<GameManager>().p2_check == true && GetComponent<King>()) {
+            GameManager.GetComponent<GameManager>().p2_check == true && GetComponent<King>()) { // checking if it's your turn, and can move // you cannot move anything besides the king in check
                 GetComponent<Collider>().enabled = true;
                 if (Input.GetMouseButtonDown(0))
                 {
@@ -54,7 +55,7 @@ public abstract class Piece : MonoBehaviour
                         {
                             if (hit.collider.CompareTag("ChessSquare"))
                             {
-                                if (hit.collider.GetComponent<Renderer>().material.color == Color.yellow)
+                                if (hit.collider.GetComponent<Renderer>().material.color == Color.yellow) // if yellow, switch, and make sure dead pieces are stored
                                 {
                                     GameObject temp = GameManager.GetComponent<GameManager>().game[(int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f)];
                                     GameManager.GetComponent<GameManager>().game[(int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f)] = null;
@@ -97,14 +98,14 @@ public abstract class Piece : MonoBehaviour
             GetComponent<Collider>().enabled = false;
     }
 
-    void SelectPiece()
+    void SelectPiece() // select the piece
     {
         isSelected = true;
         GetComponent<Renderer>().material.color = Color.yellow;
         targetPosition = transform.position + Vector3.up * 0.5f;
     }
 
-    void DeselectPiece()
+    void DeselectPiece() // bring it back down
     {
         isSelected = false;
         if (isWhite)
@@ -114,7 +115,7 @@ public abstract class Piece : MonoBehaviour
         targetPosition = new Vector3(transform.position.x, originalPosition.y, transform.position.z);
     }
 
-    void Highlight() {
+    void Highlight() { // how everything is highlighted
         for (int z = 0; z < 8; z++)
             for (int x = 0; x < 8; x++) {
                 GameObject temp1 = GameManager.GetComponent<GameManager>().blocks[z, x];
@@ -130,7 +131,7 @@ public abstract class Piece : MonoBehaviour
         }
     }
 
-    void UnHighlight() {
+    void UnHighlight() { // removes the highlight
         for (int z = 0; z < 8; z++)
             for (int x = 0; x < 8; x++) {
                 GameObject temp = GameManager.GetComponent<GameManager>().blocks[z, x];
@@ -141,7 +142,7 @@ public abstract class Piece : MonoBehaviour
             }
     }
 
-    public void MovePiece(Vector3 newPosition)
+    public void MovePiece(Vector3 newPosition) // how switching places is handled
     {
         transform.position = new Vector3(
             Mathf.Floor(newPosition.x) + 0.5f,
@@ -150,7 +151,7 @@ public abstract class Piece : MonoBehaviour
         );
         DeselectPiece();
     }
-    public virtual List<Move> getAllMoves(GameObject[,] arr) {
+    public virtual List<Move> getAllMoves(GameObject[,] arr) { // all pieces override this method and add their unique ways of moving
         return new List<Move>();
     }
 }

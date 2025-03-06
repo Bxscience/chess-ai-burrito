@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Move
+public class Move // basic class to examine moves
 {
     public int startz;
     public int startx;
