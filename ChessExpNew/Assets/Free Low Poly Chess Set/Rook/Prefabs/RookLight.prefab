@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1890146067213476193}
   m_Layer: 0
   m_Name: RookLight
-  m_TagString: Untagged
+  m_TagString: Piece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -97,6 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39a961f23ec5d5a41825a996b7ca4e0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GameManager: {fileID: 0}
 --- !u!65 &1890146067213476193
 BoxCollider:
   m_ObjectHideFlags: 0
