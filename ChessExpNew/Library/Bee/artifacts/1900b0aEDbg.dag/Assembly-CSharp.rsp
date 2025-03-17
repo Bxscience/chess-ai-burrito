@@ -363,6 +363,7 @@
 "Assets/Scripts/Pieces/Piece.cs"
 "Assets/Scripts/Pieces/Queen.cs"
 "Assets/Scripts/Pieces/Rook.cs"
+"Assets/Scripts/Zorbist.cs"
 -langversion:9.0
 /deterministic
 /optimize-

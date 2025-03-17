@@ -12,36 +12,52 @@ public class Pawn : Piece
         if (isWhite) {
             if (transform.position.z + 3.5f < 7)
                 if (arr[(int) (transform.position.z + 4.5f), (int) (transform.position.x + 3.5)] == null)
-                    moves.Add(new Move((int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f), (int) (transform.position.z + 4.5f), (int) (transform.position.x + 3.5)));
+                    moves.Add(new Move((int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f), (int) (transform.position.z + 4.5f), (int) (transform.position.x + 3.5),
+                    200,
+                    0));
             if (hasMovedBefore == false && arr[(int) (transform.position.z + 4.5f), (int) (transform.position.x + 3.5)] == null
             && arr[(int) (transform.position.z + 5.5f), (int) (transform.position.x + 3.5)] == null)
-                moves.Add(new Move((int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f), (int) (transform.position.z + 5.5f), (int) (transform.position.x + 3.5)));
+                moves.Add(new Move((int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f), (int) (transform.position.z + 5.5f), (int) (transform.position.x + 3.5),
+                200,
+                0));
             if (transform.position.x + 3.5f < 7 && transform.position.z + 3.5f < 7) {
                 if (arr[(int) (transform.position.z + 4.5f), (int) (transform.position.x + 4.5f)] != null)
                     if (arr[(int) (transform.position.z + 4.5f), (int) (transform.position.x + 4.5f)].GetComponent<Piece>().isWhite == false)
-                        moves.Add(new Move((int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f), (int) (transform.position.z + 4.5f), (int) (transform.position.x + 4.5)));
+                        moves.Add(new Move((int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f), (int) (transform.position.z + 4.5f), (int) (transform.position.x + 4.5),
+                        PieceValues(arr[(int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f)]),
+                        PieceValues(arr[(int) (transform.position.z + 4.5f), (int) (transform.position.x + 4.5f)])));
             if (transform.position.x + 3.5f > 0 && transform.position.z + 3.5f < 7) 
                 if (arr[(int) (transform.position.z + 4.5f), (int) (transform.position.x + 2.5f)] != null)
                     if (arr[(int) (transform.position.z + 4.5f), (int) (transform.position.x + 2.5f)].GetComponent<Piece>().isWhite == false)
-                        moves.Add(new Move((int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f), (int) (transform.position.z + 4.5f), (int) (transform.position.x + 2.5)));
+                        moves.Add(new Move((int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f), (int) (transform.position.z + 4.5f), (int) (transform.position.x + 2.5),
+                        PieceValues(arr[(int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f)]),
+                        PieceValues(arr[(int) (transform.position.z + 4.5f), (int) (transform.position.x + 2.5f)])));
             }
         }
         else {
             if (transform.position.z + 3.5f > 0) {
                 if (arr[(int) (transform.position.z + 2.5f), (int) (transform.position.x + 3.5)] == null)
-                    moves.Add(new Move((int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f), (int) (transform.position.z + 2.5f), (int) (transform.position.x + 3.5)));
+                    moves.Add(new Move((int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f), (int) (transform.position.z + 2.5f), (int) (transform.position.x + 3.5),
+                    200,
+                    0));
             }
             if (hasMovedBefore == false && arr[(int) (transform.position.z + 2.5f), (int) (transform.position.x + 3.5)] == null
             && arr[(int) (transform.position.z + 1.5f), (int) (transform.position.x + 3.5)] == null)
-                moves.Add(new Move((int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f), (int) (transform.position.z + 1.5f), (int) (transform.position.x + 3.5)));
+                moves.Add(new Move((int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f), (int) (transform.position.z + 1.5f), (int) (transform.position.x + 3.5),
+                200,
+                0));
             if (transform.position.x + 3.5f < 7 && transform.position.z + 3.5f > 0)
                 if (arr[(int) (transform.position.z + 2.5f), (int) (transform.position.x + 4.5f)] != null)
                     if (arr[(int) (transform.position.z + 2.5f), (int) (transform.position.x + 4.5f)].GetComponent<Piece>().isWhite == true)
-                        moves.Add(new Move((int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f), (int) (transform.position.z + 2.5f), (int) (transform.position.x + 4.5)));
+                        moves.Add(new Move((int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f), (int) (transform.position.z + 2.5f), (int) (transform.position.x + 4.5),
+                        PieceValues(arr[(int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f)]),
+                        PieceValues(arr[(int) (transform.position.z + 2.5f), (int) (transform.position.x + 4.5f)])));
             if (transform.position.x + 3.5f > 0 && transform.position.z + 3.5f > 0)    
                 if (arr[(int) (transform.position.z + 2.5f), (int) (transform.position.x + 2.5f)] != null)
                     if (arr[(int) (transform.position.z + 2.5f), (int) (transform.position.x + 2.5f)].GetComponent<Piece>().isWhite == true)
-                        moves.Add(new Move((int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f), (int) (transform.position.z + 2.5f), (int) (transform.position.x + 2.5)));
+                        moves.Add(new Move((int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f), (int) (transform.position.z + 2.5f), (int) (transform.position.x + 2.5),
+                        PieceValues(arr[(int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f)]),
+                        PieceValues(arr[(int) (transform.position.z + 2.5f), (int) (transform.position.x + 2.5f)])));
         }
         return moves;
     }

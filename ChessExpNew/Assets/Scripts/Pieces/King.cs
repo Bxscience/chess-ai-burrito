@@ -9,10 +9,14 @@ public class King : Piece
         for (int a = 1; a < 2; a++) {
             if (transform.position.z + 3.5 + a <= 7) {
                 if (arr[(int) (transform.position.z + 3.5f + a), (int) (transform.position.x + 3.5f)] == null)
-                    moves.Add(new Move((int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f), (int) (transform.position.z + 3.5f + a), (int) (transform.position.x + 3.5f)));
+                    moves.Add(new Move((int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f), (int) (transform.position.z + 3.5f + a), (int) (transform.position.x + 3.5f),
+                    200,
+                    0));
                 else {
                     if (arr[(int) (transform.position.z + 3.5f + a), (int) (transform.position.x + 3.5f)].GetComponent<Piece>().isWhite != isWhite)
-                        moves.Add(new Move((int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f), (int) (transform.position.z + 3.5f + a), (int) (transform.position.x + 3.5f)));
+                        moves.Add(new Move((int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f), (int) (transform.position.z + 3.5f + a), (int) (transform.position.x + 3.5f),
+                        PieceValues(arr[(int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f)]),
+                        PieceValues(arr[(int) (transform.position.z + 3.5f + a), (int) (transform.position.x + 3.5f)])));
                     break;                
                 }
             }
@@ -22,10 +26,14 @@ public class King : Piece
         for (int a = 1; a < 2; a++) {
             if (transform.position.z + 3.5 - a >= 0) {
                 if (arr[(int) (transform.position.z + 3.5f - a), (int) (transform.position.x + 3.5f)] == null)
-                    moves.Add(new Move((int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f), (int) (transform.position.z + 3.5f - a), (int) (transform.position.x + 3.5f)));
+                    moves.Add(new Move((int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f), (int) (transform.position.z + 3.5f - a), (int) (transform.position.x + 3.5f),
+                    200,
+                    0));
                 else {
                     if (arr[(int) (transform.position.z + 3.5f - a), (int) (transform.position.x + 3.5f)].GetComponent<Piece>().isWhite != isWhite)
-                        moves.Add(new Move((int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f), (int) (transform.position.z + 3.5f - a), (int) (transform.position.x + 3.5f)));
+                        moves.Add(new Move((int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f), (int) (transform.position.z + 3.5f - a), (int) (transform.position.x + 3.5f),
+                        PieceValues(arr[(int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f)]),
+                        PieceValues(arr[(int) (transform.position.z + 3.5f - a), (int) (transform.position.x + 3.5f)])));
                     break;                
                 }
             }
@@ -35,10 +43,14 @@ public class King : Piece
         for (int a = 1; a < 2; a++) {
             if (transform.position.x + 3.5 + a <= 7) {
                 if (arr[(int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f + a)] == null)
-                    moves.Add(new Move((int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f), (int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f + a)));
+                    moves.Add(new Move((int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f), (int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f + a),
+                    200,
+                    0));
                 else {
                     if (arr[(int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f + a)].GetComponent<Piece>().isWhite != isWhite)
-                        moves.Add(new Move((int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f), (int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f + a)));
+                        moves.Add(new Move((int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f), (int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f + a),
+                        PieceValues(arr[(int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f)]),
+                        PieceValues(arr[(int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f + a)])));
                     break;                
                 }
             }
@@ -48,10 +60,14 @@ public class King : Piece
         for (int a = 1; a < 2; a++) {
             if (transform.position.x + 3.5 - a >= 0) {
                 if (arr[(int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f - a)] == null)
-                    moves.Add(new Move((int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f), (int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f - a)));
+                    moves.Add(new Move((int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f), (int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f - a),
+                    200,
+                    0));
                 else {
                     if (arr[(int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f - a)].GetComponent<Piece>().isWhite != isWhite)
-                        moves.Add(new Move((int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f), (int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f - a)));
+                        moves.Add(new Move((int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f), (int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f - a),
+                        PieceValues(arr[(int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f)]),
+                        PieceValues(arr[(int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f - a)])));
                     break;                
                 }
             }
@@ -61,10 +77,14 @@ public class King : Piece
         for (int a = 1; a < 2; a++) {
             if (transform.position.z + 3.5 + a <= 7 && transform.position.x + 3.5 + a <= 7) {
                 if (arr[(int) (transform.position.z + 3.5f + a), (int) (transform.position.x + 3.5f + a)] == null)
-                    moves.Add(new Move((int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f), (int) (transform.position.z + 3.5f + a), (int) (transform.position.x + 3.5f + a)));
+                    moves.Add(new Move((int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f), (int) (transform.position.z + 3.5f + a), (int) (transform.position.x + 3.5f + a),
+                    200,
+                    0));
                 else {
                     if (arr[(int) (transform.position.z + 3.5f + a), (int) (transform.position.x + 3.5f + a)].GetComponent<Piece>().isWhite != isWhite)
-                        moves.Add(new Move((int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f), (int) (transform.position.z + 3.5f + a), (int) (transform.position.x + 3.5f + a)));
+                        moves.Add(new Move((int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f), (int) (transform.position.z + 3.5f + a), (int) (transform.position.x + 3.5f + a),
+                        PieceValues(arr[(int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f)]),
+                        PieceValues(arr[(int) (transform.position.z + 3.5f + a), (int) (transform.position.x + 3.5f + a)])));
                     break;                
                 }
             }
@@ -74,10 +94,14 @@ public class King : Piece
         for (int a = 1; a < 2; a++) {
             if (transform.position.z + 3.5 - a >= 0 && transform.position.x + 3.5 - a >= 0) {
                 if (arr[(int) (transform.position.z + 3.5f - a), (int) (transform.position.x + 3.5f - a)] == null)
-                    moves.Add(new Move((int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f), (int) (transform.position.z + 3.5f - a), (int) (transform.position.x + 3.5f - a)));
+                    moves.Add(new Move((int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f), (int) (transform.position.z + 3.5f - a), (int) (transform.position.x + 3.5f - a),
+                    200,
+                    0));
                 else {
                     if (arr[(int) (transform.position.z + 3.5f - a), (int) (transform.position.x + 3.5f - a)].GetComponent<Piece>().isWhite != isWhite)
-                        moves.Add(new Move((int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f), (int) (transform.position.z + 3.5f - a), (int) (transform.position.x + 3.5f - a)));
+                        moves.Add(new Move((int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f), (int) (transform.position.z + 3.5f - a), (int) (transform.position.x + 3.5f - a),
+                        PieceValues(arr[(int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f)]),
+                        PieceValues(arr[(int) (transform.position.z + 3.5f - a), (int) (transform.position.x + 3.5f - a)])));
                     break;                
                 }
             }
@@ -87,10 +111,14 @@ public class King : Piece
         for (int a = 1; a < 2; a++) {
             if (transform.position.z + 3.5 - a >= 0 && transform.position.x + 3.5 + a <= 7) {
                 if (arr[(int) (transform.position.z + 3.5f - a), (int) (transform.position.x + 3.5f + a)] == null)
-                    moves.Add(new Move((int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f), (int) (transform.position.z + 3.5f - a), (int) (transform.position.x + 3.5f + a)));
+                    moves.Add(new Move((int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f), (int) (transform.position.z + 3.5f - a), (int) (transform.position.x + 3.5f + a),
+                    200,
+                    0));
                 else {
                     if (arr[(int) (transform.position.z + 3.5f - a), (int) (transform.position.x + 3.5f + a)].GetComponent<Piece>().isWhite != isWhite)
-                        moves.Add(new Move((int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f), (int) (transform.position.z + 3.5f - a), (int) (transform.position.x + 3.5f + a)));
+                        moves.Add(new Move((int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f), (int) (transform.position.z + 3.5f - a), (int) (transform.position.x + 3.5f + a),
+                        PieceValues(arr[(int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f)]),
+                        PieceValues(arr[(int) (transform.position.z + 3.5f - a), (int) (transform.position.x + 3.5f + a)])));
                     break;                
                 }
             }
@@ -100,16 +128,20 @@ public class King : Piece
         for (int a = 1; a < 2; a++) {
             if (transform.position.z + 3.5 + a <= 7 && transform.position.x + 3.5 - a >= 0) {
                 if (arr[(int) (transform.position.z + 3.5f + a), (int) (transform.position.x + 3.5f - a)] == null)
-                    moves.Add(new Move((int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f), (int) (transform.position.z + 3.5f + a), (int) (transform.position.x + 3.5f - a)));
+                    moves.Add(new Move((int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f), (int) (transform.position.z + 3.5f + a), (int) (transform.position.x + 3.5f - a),
+                    200,
+                    0));
                 else {
                     if (arr[(int) (transform.position.z + 3.5f + a), (int) (transform.position.x + 3.5f - a)].GetComponent<Piece>().isWhite != isWhite)
-                        moves.Add(new Move((int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f), (int) (transform.position.z + 3.5f + a), (int) (transform.position.x + 3.5f - a)));
+                        moves.Add(new Move((int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f), (int) (transform.position.z + 3.5f + a), (int) (transform.position.x + 3.5f - a),
+                        PieceValues(arr[(int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f)]),
+                        PieceValues(arr[(int) (transform.position.z + 3.5f + a), (int) (transform.position.x + 3.5f - a)])));
                     break;                
                 }
             }
             else
                 break;
-        } // checks if moves will put king in danger
+        } //check if moves put king in danger
         if (GameManager.GetComponent<GameManager>().player1_turn == true && isWhite == true 
         || GameManager.GetComponent<GameManager>().player2_turn == true && isWhite == false) {
             GameObject[,] arr2 = new GameObject[8,8];
@@ -133,7 +165,7 @@ public class King : Piece
         for (int z = 0; z < 8; z++) {
             for (int x = 0; x < 8; x++) {
                 if (arr[z, x] != null) {
-                    if (arr[z, x].GetComponent<Piece>().isWhite != isWhite) {
+                    if (arr[z, x].GetComponent<Piece>().isWhite != white) {
                         List<Move> temp = arr[z, x].GetComponent<Piece>().getAllMoves(arr); // checks all opposing pieces to see if they affect the king
                         for (int a = 0; a < temp.Count; a++)
                             if (temp[a].endz == transform.position.z + 3.5 && temp[a].endx == transform.position.x + 3.5) {
@@ -151,7 +183,7 @@ public class King : Piece
         for (int z = 0; z < 8; z++) {
             for (int x = 0; x < 8; x++) {
                 if (arr[z, x] != null) {
-                    if (arr[z, x].GetComponent<Piece>().isWhite != isWhite) {
+                    if (arr[z, x].GetComponent<Piece>().isWhite != white) {
                         List<Move> temp = arr[z, x].GetComponent<Piece>().getAllMoves(arr);
                         for (int a = 0; a < temp.Count; a++)
                             if (temp[a].endz == ez && temp[a].endx == ex) {
@@ -206,8 +238,7 @@ public class King : Piece
         for (int z = 0; z < 8; z++) {
             for (int x = 0; x < 8; x++) {
                 if (GameManager.GetComponent<GameManager>().game[z, x] != null) {
-                    if (GameManager.GetComponent<GameManager>().game[z, x].GetComponent<Piece>().isWhite == isWhite) {
-                        Debug.Log(z + ", " + x);
+                    if (GameManager.GetComponent<GameManager>().game[z, x].GetComponent<Piece>().isWhite == white) {
                         temp1.AddRange(GameManager.GetComponent<GameManager>().game[z, x].GetComponent<Piece>().getAllMoves(GameManager.GetComponent<GameManager>().game));
                     }
                 }
