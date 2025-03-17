@@ -20,7 +20,6 @@ public abstract class Piece : MonoBehaviour // Main Piece class
         originalPosition = transform.position;
         // Determine if pawn is white based on starting position
         isWhite = transform.position.z < 0; 
-        Debug.Log($"Pawn initialized at position: {originalPosition}, isWhite: {isWhite}");
         GameManager = GameObject.Find("GameManager");
         alive = true;
         DeselectPiece();
@@ -31,7 +30,7 @@ public abstract class Piece : MonoBehaviour // Main Piece class
             transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * moveSpeed);
         }
         
-        if ((GameManager.GetComponent<GameManager>().player1_turn == true && isWhite == true || GameManager.GetComponent<GameManager>().player2_turn == true && isWhite == false) && alive == true) {
+        if ((GameManager.GetComponent<GameManager>().player1_turn == true && isWhite == true && GameManager.GetComponent<GameManager>().p_one_AI == false || GameManager.GetComponent<GameManager>().player2_turn == true && isWhite == false && GameManager.GetComponent<GameManager>().p_two_AI == false) && alive == true) {
             if (GameManager.GetComponent<GameManager>().p1_check == false && GameManager.GetComponent<GameManager>().player1_turn == true || GameManager.GetComponent<GameManager>().player1_turn == true && 
             GameManager.GetComponent<GameManager>().p1_check == true && GetComponent<King>() != null || 
             GameManager.GetComponent<GameManager>().p2_check == false && GameManager.GetComponent<GameManager>().player2_turn == true || GameManager.GetComponent<GameManager>().player2_turn == true && 
@@ -80,7 +79,6 @@ public abstract class Piece : MonoBehaviour // Main Piece class
                                 }
                                 else
                                 {
-                                    Debug.Log($"Invalid move to {hit.point}. Current pos: {transform.position}, IsWhite: {isWhite}");
                                     DeselectPiece();
                                     UnHighlight();
                                 }
@@ -127,7 +125,6 @@ public abstract class Piece : MonoBehaviour // Main Piece class
         List<Move> temp = getAllMoves(GameManager.GetComponent<GameManager>().game);
         for (int x = 0; x < temp.Count; x++) {
             GameManager.GetComponent<GameManager>().blocks[temp[x].endz, temp[x].endx].GetComponent<Renderer>().material.color = Color.yellow;
-            Debug.Log(temp[x].endz + " " + temp[x].endx);
         }
     }
 
@@ -153,5 +150,37 @@ public abstract class Piece : MonoBehaviour // Main Piece class
     }
     public virtual List<Move> getAllMoves(GameObject[,] arr) { // all pieces override this method and add their unique ways of moving
         return new List<Move>();
+    }
+    public int PieceValues(GameObject piece) {
+        int points = 0;
+        if (piece != null) {
+            if (piece.GetComponent<Pawn>() != null) {
+                points += 1;
+                if (piece.GetComponent<Piece>().isWhite == true) {
+                    points += (int) (piece.transform.position.x + 3.5);
+                    points += 2 * Mathf.Abs(4 - (int) (piece.transform.position.z + 3.5));  
+                }
+                else {
+                    points += 7 - (int) (piece.transform.position.x + 3.5);
+                    points += 2 * Mathf.Abs(4 - (int) (piece.transform.position.z + 3.5));  
+                }
+            }
+            if (piece.GetComponent<Knight>() != null) {
+                points += 9;
+            }
+            if (piece.GetComponent<Rook>() != null) {
+                points += 15;
+            }
+            if (piece.GetComponent<Bishop>() != null) {
+                points += 12;
+            }
+            if (piece.GetComponent<Queen>() != null) {
+                points += 20;
+            }
+            if (piece.GetComponent<King>() != null) {
+                points += 100;
+            }
+        }
+        return points;
     }
 }

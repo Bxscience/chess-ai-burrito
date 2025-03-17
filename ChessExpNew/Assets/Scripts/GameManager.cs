@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour // Main class that handles the game
     //all the pieces
     public GameObject block; // tiles that gets highlighted yellow
     public List<GameObject> dead_pieces = new List<GameObject>(); // all dead peaces
+    public Stack<GameObject> undo_object = new Stack<GameObject>();
 
     public int turn;
     public GameObject[,] game = new GameObject[8, 8]; // main game, everything is done through this
@@ -119,9 +120,7 @@ public class GameManager : MonoBehaviour // Main class that handles the game
                     return;
                 }
             }
-            if (p_one_AI == false) {
-                player1_turn = true;
-            }
+            player1_turn = true;
         }
     }
     public void P2Turn() {
@@ -145,13 +144,11 @@ public class GameManager : MonoBehaviour // Main class that handles the game
             }
             if (p_two_AI == false) {
                 player2_turn = true;
-                Debug.Log("ben");
             }
             else {
+                player2_turn = true;
                 Move best = AI2.BestMove(game, false);
-                Debug.Log(best.startz + ", " + best.startx + ", " + best.endz + ", " + best.endx);
                 GameObject temp = game[best.startz, best.startx];
-                Debug.Log(temp.GetComponent<Pawn>() != null);
                 game[best.startz, best.startx] = null;
                 if (game[best.endz, best.endx] != null) {
                     GameObject temp1 = game[best.endz, best.endx];
@@ -162,8 +159,6 @@ public class GameManager : MonoBehaviour // Main class that handles the game
                 game[best.endz, best.endx] = temp;
                 game[best.endz, best.endx].GetComponent<Piece>().hasMovedBefore = true;
                 game[best.endz, best.endx].GetComponent<Piece>().MovePiece(new Vector3 (best.endx - 3.5f, 0, best.endz - 3.5f));
-                Debug.Log(game[best.endz, best.endx].GetComponent<Piece>().hasMovedBefore);
-                Debug.Log(game[best.endz, best.endx].transform.position + " " + game[best.endz, best.endx].GetComponent<Piece>().targetPosition);
                 player1_turn = false;
                 player2_turn = false;
                 p1_check = false;
