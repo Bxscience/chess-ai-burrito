@@ -141,7 +141,40 @@ public class King : Piece
             }
             else
                 break;
-        } //check if moves put king in danger
+        } 
+        //white castling king side
+        for (int a=1; a<3; a++) {
+            if (arr[(int)(transform.position.z+3.5f), (int)(transform.position.x+3.5f+a)] == null && !danger(true, arr)) {
+                moves.Add(new Move((int)(transform.position.z+3.5f), (int)(transform.position.x+3.5f), (int)(transform.position.z+3.5f), (int)(transform.position.x+3.5f+2),
+                200,
+                0));
+            }
+        }
+        //black castling king side
+        for (int a=1; a<3; a++) {
+            if (arr[(int)(transform.position.z+3.5f), (int)(transform.position.x+3.5f+a)] == null && !danger(false, arr)) {
+                moves.Add(new Move((int)(transform.position.z+3.5f), (int)(transform.position.x+3.5f), (int)(transform.position.z+3.5f), (int)(transform.position.x+3.5f+2),
+                200,
+                0));
+            }
+        }
+        //white castling queen side
+        for (int a=1; a<4; a++) {
+            if (arr[(int)(transform.position.z+3.5f), (int)(transform.position.x+3.5f-a)] == null && !danger(true, arr)) {
+                moves.Add(new Move((int)(transform.position.z+3.5f), (int)(transform.position.x+3.5f), (int)(transform.position.z+3.5f), (int)(transform.position.x+3.5f-2),
+                200,
+                0));
+            }
+        }
+        //black castling queen side
+        for (int a=1; a<4; a++) {
+            if (arr[(int)(transform.position.z+3.5f), (int)(transform.position.x+3.5f-a)] == null && !danger(false, arr)) {
+                moves.Add(new Move((int)(transform.position.z+3.5f), (int)(transform.position.x+3.5f), (int)(transform.position.z+3.5f), (int)(transform.position.x+3.5f-2),
+                200,
+                0));
+            }
+        }
+        //check if moves put king in danger
         if (GameManager.GetComponent<GameManager>().player1_turn == true && isWhite == true 
         || GameManager.GetComponent<GameManager>().player2_turn == true && isWhite == false) {
             GameObject[,] arr2 = new GameObject[8,8];
