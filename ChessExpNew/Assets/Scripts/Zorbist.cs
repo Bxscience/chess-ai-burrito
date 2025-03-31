@@ -20,85 +20,40 @@ public class Zorbist
         }
         turn = ((ulong)rng.Next() << 32) | (ulong)rng.Next();
     }
-    public ulong Hash(int[] arr, bool maximizingPlayer) {
+    public ulong Hash(GameObject[,] arr) {
         ulong hash = 0;
-        for (int x = 0; x < 64; x++) {
-            int temp = arr[x];
-            if (temp != 0) {
-                int color = 0;
-                if (temp < 0)
-                    color = 1;
-                int pieceType = Mathf.Abs(temp) % 100 - 1;
-                //Debug.Log(values[color, pieceType, x]);
-                hash ^= values[color, pieceType, x];
+        for (int z = 0; z < 8; z++) {
+            for (int x = 0; x < 8; x++) {
+                GameObject temp = arr[z,x];
+                if (temp != null) {
+                    int color = 0;
+                    if (temp.GetComponent<Piece>().isWhite == false)
+                        color = 1;
+                    int pieceType = getType(temp);
+                    int square = z * 8 + x;
+                    hash ^= values[color, pieceType, square];
+                }
             }
         }
-        if (maximizingPlayer == false)
-            hash ^= turn;
         return hash;
     }
 
     // Update is called once per frame
     public int getType(GameObject piece) {
         if (piece.GetComponent<Pawn>() != null)
-            return 0;
-        else if (piece.GetComponent<Knight>() != null)
             return 1;
-        else if (piece.GetComponent<Rook>() != null)
+        else if (piece.GetComponent<Knight>() != null)
             return 2;
-        else if (piece.GetComponent<Bishop>() != null)
+        else if (piece.GetComponent<Rook>() != null)
             return 3;
-        else if (piece.GetComponent<Queen>() != null)
+        else if (piece.GetComponent<Bishop>() != null)
             return 4;
-        else
+        else if (piece.GetComponent<Queen>() != null)
             return 5;
+        else
+            return 6;
     }
-    
-    public ulong UpdateHash(ref ulong hash, Move move, GameObject[] arr) {
-        int fromSquare = move.startz * 8 + move.startx;
-        int toSquare = move.endz * 8 + move.endx;
-        int color = arr[move.startz * 8 + move.startx].GetComponent<Piece>().isWhite ? 0 : 1;
-        int pieceType = (int) getType(arr[move.startz * 8 + move.startx]);
+    //public void UpdateHash(ref ulong hash, Move move, GameObject[,] arr) {
 
-        // Remove piece from old position
-        hash ^= values[color, pieceType, fromSquare];
-
-        // Remove captured piece if any
-        if (arr[move.endz * 8 + move.endx] != null) {
-            int capturedColor = arr[move.endz * 8 + move.endx].GetComponent<Piece>().isWhite ? 0 : 1;
-            int capturedPieceType = (int) getType(arr[move.endz * 8 + move.endx]);
-            hash ^= values[capturedColor, capturedPieceType, toSquare];
-        }
-
-        // Add piece to new position
-        hash ^= values[color, pieceType, toSquare];
-
-        // Toggle turn hash
-        hash ^= turn;
-        return hash;
-    }
-    public ulong UndoHash(ref ulong hash, Move move, GameObject[] arr, GameObject old) {
-        int fromSquare = move.startz * 8 + move.startx;
-        int toSquare = move.endz * 8 + move.endx;
-        int color = arr[move.endz * 8 + move.endx].GetComponent<Piece>().isWhite ? 0 : 1;
-        int pieceType = (int) getType(arr[move.endz * 8 + move.endx]);
-
-        // Remove piece from old position
-        hash ^= values[color, pieceType, toSquare];
-
-        // Add piece to new position
-        hash ^= values[color, pieceType, fromSquare];
-
-        // Add captured piece if any
-        if (old != null) {
-            int capturedColor = old.GetComponent<Piece>().isWhite ? 0 : 1;
-            int capturedPieceType = (int) getType(old);
-            hash ^= values[capturedColor, capturedPieceType, toSquare];
-        }
-
-        // Toggle turn hash
-        hash ^= turn;
-        return hash;
-    }
-    
+    //}
 }

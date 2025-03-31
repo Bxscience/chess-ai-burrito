@@ -1,1 +1,1 @@
-C:\Users\arper\chess-ai-burrito - Working AI - Copy\ChessExpNew
+C:\Users\arper\chess-ai-burrito - Correct Negamax - Copy\ChessExpNew
