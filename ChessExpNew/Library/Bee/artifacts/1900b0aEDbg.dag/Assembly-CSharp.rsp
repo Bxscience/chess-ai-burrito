@@ -355,14 +355,17 @@
 "Assets/Free Low Poly Chess Set/Example/Scripts/CameraRotate.cs"
 "Assets/Scripts/AIScript.cs"
 "Assets/Scripts/GameManager.cs"
+"Assets/Scripts/IntConverter.cs"
 "Assets/Scripts/Move.cs"
 "Assets/Scripts/Pieces/Bishop.cs"
+"Assets/Scripts/Pieces/EnPassant.cs"
 "Assets/Scripts/Pieces/King.cs"
 "Assets/Scripts/Pieces/Knight.cs"
 "Assets/Scripts/Pieces/Pawn.cs"
 "Assets/Scripts/Pieces/Piece.cs"
 "Assets/Scripts/Pieces/Queen.cs"
 "Assets/Scripts/Pieces/Rook.cs"
+"Assets/Scripts/TranspositionTable.cs"
 "Assets/Scripts/Zorbist.cs"
 -langversion:9.0
 /deterministic
