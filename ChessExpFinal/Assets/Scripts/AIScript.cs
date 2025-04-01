@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class AIScript
 {
-    public int depth = 5;
+    public int depth = GameSlider.game_depth;
 
     public Stack<int> undo_tan = new Stack<int>();
     public Stack<int> undo_tar = new Stack<int>();
@@ -36,7 +36,7 @@ public class AIScript
         }
     }
     int EarlyGame(int[] arr, bool color, List<Move> all_moves) { // midgame eval function
-        int points = all_moves.Count;
+        int points = 0;
         for (int a = 0; a < 64; a++) {
             if (arr[a] != 0) {
             if (Mathf.Abs(arr[a]) % 100 == 1) {
