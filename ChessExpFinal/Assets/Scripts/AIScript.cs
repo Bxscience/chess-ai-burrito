@@ -235,7 +235,6 @@ public class AIScript
         int bestScore = int.MinValue;
         int index = 0;
         List<Move> all_moves = new List<Move>();
-        Debug.Log(arr[1, 0].GetComponent<Piece>().getAllMoves(arr).Count);
         for (int z = 0; z < 8; z++) {
             for (int x = 0; x < 8; x++) {
                 if (arr[z, x] != null) {
