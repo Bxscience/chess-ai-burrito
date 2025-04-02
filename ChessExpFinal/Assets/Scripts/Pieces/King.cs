@@ -148,7 +148,8 @@ public class King : Piece
         || GameManager.GetComponent<GameManager>().player2_turn == true && isWhite == false) {
             bool bad = false;
             for (int a = 0; a <= 2; a++) {
-                if (arr[(int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f - a)] != null ||
+                if (arr[(int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f - a)] != null && 
+                arr[(int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f - a)] != gameObject ||
                 danger(isWhite, arr, (int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f - a)) == true) {
                     bad = true;
                     break;
@@ -161,11 +162,12 @@ public class King : Piece
             }
         }
         if (hasMovedBefore == false && arr[(int) (transform.position.z + 3.5), 7] != null &&
-        GameManager.GetComponent<GameManager>().player1_turn == true && isWhite == true 
-        || GameManager.GetComponent<GameManager>().player2_turn == true && isWhite == false) {
+        (GameManager.GetComponent<GameManager>().player1_turn == true && isWhite == true) 
+        || (GameManager.GetComponent<GameManager>().player2_turn == true && isWhite == false)) {
             bool bad = false;
             for (int a = 0; a <= 2; a++) {
-                if (arr[(int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f + a)] != null ||
+                if (arr[(int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f + a)] != null && 
+                arr[(int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f + a)] != gameObject ||
                 danger(isWhite, arr, (int) (transform.position.z + 3.5f), (int) (transform.position.x + 3.5f + a)) == true) {
                     bad = true;
                     break;

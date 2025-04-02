@@ -180,10 +180,15 @@ public class GameManager : MonoBehaviour // Main class that handles the game
                     temp1.GetComponent<Piece>().alive = false;
                     temp1.GetComponent<Piece>().targetPosition = new Vector3(-10, 0, transform.position.z);
                     dead_pieces.Add(temp1);
+                    game[best.startz, best.endz] = null;
                 }
                 game[best.endz, best.endx] = temp;
                 game[best.endz, best.endx].GetComponent<Piece>().hasMovedBefore = true;
                 game[best.endz, best.endx].GetComponent<Piece>().MovePiece(new Vector3 (best.endx - 3.5f, 0, best.endz - 3.5f));
+                if (best.castleleft == true)
+                    game[best.endz, 3].GetComponent<Piece>().hasMovedBefore = true;
+                if (best.castleright == true)
+                    game[best.endz, 5].GetComponent<Piece>().hasMovedBefore = true;
                 if (best.promotion != 0) {
                     if (best.promotion == 1) {
                         GameObject temp0 = Instantiate(knightb, new Vector3(game[best.endz, best.endx].transform.position.x, 0, game[best.endz, best.endx].transform.position.z), Quaternion.identity);
@@ -269,6 +274,7 @@ public class GameManager : MonoBehaviour // Main class that handles the game
                     temp1.GetComponent<Piece>().alive = false;
                     temp1.GetComponent<Piece>().targetPosition = new Vector3(-10, 0, transform.position.z);
                     dead_pieces.Add(temp1);
+                    game[best.startz, best.endz] = null;
                 }
                 game[best.endz, best.endx] = temp;
                 game[best.endz, best.endx].GetComponent<Piece>().hasMovedBefore = true;

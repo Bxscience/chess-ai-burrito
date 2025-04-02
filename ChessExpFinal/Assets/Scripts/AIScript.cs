@@ -21,19 +21,16 @@ public class AIScript
     }
     int Evaluation(int[] arr, bool color, List<Move> all_moves) {
         GameManager = GameObject.Find("GameManager");
-        if (GameManager.GetComponent<GameManager>().turn <= 10) {
-            return EarlyGame(arr, color, all_moves);
-        }
-        else {
-            int pieces = 0;
+        int pieces = 0;
             for (int a = 0; a < 64; a++)
                 if (arr[a] != 0)
                     pieces++;
-            if (pieces > 5)
-                return MidGame(arr, color, all_moves);
-            else
-                return EndGame(arr, color, all_moves);
+        if (pieces < 10)
+            return EndGame(arr, color, all_moves);
+        if (GameManager.GetComponent<GameManager>().turn <= 40) {
+            return EarlyGame(arr, color, all_moves);
         }
+        return MidGame(arr, color, all_moves);
     }
     int EarlyGame(int[] arr, bool color, List<Move> all_moves) { // midgame eval function
         int points = 0;
@@ -262,8 +259,6 @@ public class AIScript
                 index = a;
             }
         }
-        Debug.Log(index);
-        Debug.Log(all_moves.Count);
         Debug.Log(DateTime.Now.Hour * 3600 + DateTime.Now.Minute * 60 + DateTime.Now.Second - time);
         return all_moves[index];
     }
