@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour // Main class that handles the game
     public int rule = 0;
     public AIScript AI1;
     public AIScript AI2;
+    public string state = "none";
 
     // Start is called before the first frame update
     void Start()
@@ -90,7 +91,7 @@ public class GameManager : MonoBehaviour // Main class that handles the game
         end = false;
         turn = 0;
         p_one_AI = false;
-        p_two_AI = true;
+        p_two_AI = StartingButton.playerAI2;
         if (p_one_AI) {
             AI1 = new AIScript();
             AI1.zorbist.getValues();
@@ -106,6 +107,7 @@ public class GameManager : MonoBehaviour // Main class that handles the game
         P1Turn();
     }
     public void P1Turn() {
+        state = "P1 Turn";
         if (end == false) {
             turn += 1;
             rule += 1;
@@ -133,19 +135,24 @@ public class GameManager : MonoBehaviour // Main class that handles the game
             if (turn != 1) { // performs checks of danger before allowing the turn
                 GameObject king = GameObject.Find("KingLight(Clone)");
                 if (king.GetComponent<King>().alive == false) {
+                    state = "massive blunder";
                     end = true;
                     return;
                 }
                 if (king.GetComponent<King>().danger(true, game)) {
                     if (king.GetComponent<King>().checkmate(true)) {
                         end = true;
+                        state = "p2 wins";
                         return;
                     }
-                    else
+                    else {
                         p1_check = true;
+                        state = "p1 check";
+                    }
                 }
                 if (king.GetComponent<King>().stalemate(true)) {
                     end = true;
+                    state = "stalemate";
                     return;
                 }
                 
@@ -173,10 +180,15 @@ public class GameManager : MonoBehaviour // Main class that handles the game
                     temp1.GetComponent<Piece>().alive = false;
                     temp1.GetComponent<Piece>().targetPosition = new Vector3(-10, 0, transform.position.z);
                     dead_pieces.Add(temp1);
+                    game[best.startz, best.endz] = null;
                 }
                 game[best.endz, best.endx] = temp;
                 game[best.endz, best.endx].GetComponent<Piece>().hasMovedBefore = true;
                 game[best.endz, best.endx].GetComponent<Piece>().MovePiece(new Vector3 (best.endx - 3.5f, 0, best.endz - 3.5f));
+                if (best.castleleft == true)
+                    game[best.endz, 3].GetComponent<Piece>().hasMovedBefore = true;
+                if (best.castleright == true)
+                    game[best.endz, 5].GetComponent<Piece>().hasMovedBefore = true;
                 if (best.promotion != 0) {
                     if (best.promotion == 1) {
                         GameObject temp0 = Instantiate(knightb, new Vector3(game[best.endz, best.endx].transform.position.x, 0, game[best.endz, best.endx].transform.position.z), Quaternion.identity);
@@ -212,6 +224,7 @@ public class GameManager : MonoBehaviour // Main class that handles the game
         }
     }
     public void P2Turn() {
+        state = "P2 Turn";
         if (end == false) {
             for (int z = 0; z < 8; z++)
                 for (int x = 0; x < 8; x++)
@@ -220,15 +233,19 @@ public class GameManager : MonoBehaviour // Main class that handles the game
             GameObject king = GameObject.Find("KingDark(Clone)");
             if (king.GetComponent<King>().alive == false) {
                 end = true;
+                state = "massive blunder";
                 return;
             }
             if (king.GetComponent<King>().danger(false, game)) {
                 if (king.GetComponent<King>().checkmate(false)) {
                     end = true;
+                    state = "p1 wins";
                     return;
                 }
-                else
+                else {
                     p2_check = true;
+                    state = "p2 check";
+                }
             }
             king = GameObject.Find("KingLight(Clone)");
             if (king.GetComponent<King>().stalemate(false)) {
@@ -257,6 +274,7 @@ public class GameManager : MonoBehaviour // Main class that handles the game
                     temp1.GetComponent<Piece>().alive = false;
                     temp1.GetComponent<Piece>().targetPosition = new Vector3(-10, 0, transform.position.z);
                     dead_pieces.Add(temp1);
+                    game[best.startz, best.endz] = null;
                 }
                 game[best.endz, best.endx] = temp;
                 game[best.endz, best.endx].GetComponent<Piece>().hasMovedBefore = true;
